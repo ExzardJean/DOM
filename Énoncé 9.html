@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id='action' onclick="">événement</button>
+<div>
+  <label> nan lis sa ki gn click, dbclick, aksyonpam use yn épi peze ENTER sou klavye a pou w valide l </label>
+  <input type="text" name='event-name' placeholder="type événement"/>
+</div>
+<div id="Jean"></div>
+    <script>
+        let reki=document.getElementById('jean')
+        let evenman =['click', 'dbclick', 'aksyonpam']
+        const input=document.querySelector('input[name=event-name]')
+        let action=document.getElementById('action')
+        input.addEventListener('keydown',(e)=>{
+            
+  
+            if(e.code ==='Enter'){
+                if(evenman.includes(input.value) && input.value=='click'){
+                action.click()
+                    reki.innerHTML=(`evenman sa custom ${input.value}`)
+                }
+
+        else if(evenman.includes(input.value) && input.value=='dbclick'){
+            const doubklik= new Event('dblclick')
+            action.dispatchEvent(doubklik)
+                reki.innerHTML=(`evenman sa custom ${input.value}`)
+        
+
+        }else if(evenman.includes(input.value) && input.value=='aksyonpam'){
+            const klik= new Event('click')
+            action.dispatchEvent(klik)
+            reki.innerHTML=(`evenman sa custom ${input.value}`)
+        }else{
+            reki.innerText=(`evenman sa pa custom`)
+        }
+    }
+        })
+    </script>
+</body>
+</html>
