@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="Abel" style="height: 300px; width: 300px; background-color:#000"></div>
+    <script>
+
+
+
+const Abel=document.getElementById('Abel')
+Abel.addEventListener("mousemove", (event)=>{
+    if(event.clientX<255 && event.clientY<255 || event.clientX>255 && event.clientY>255 ){
+
+        let ale=Math.random((event.clientX + event.clientY - event.clientX - event.clientY ))
+
+            if(ale>255){
+                ale=255
+            }
+            Abel.style.backgroundColor="rgb("+event.clientX+","+event.clientY+","+ale+")"
+
+    }else{
+        event.stopPropagation()
+    }
+    
+            
+
+});
+    </script>
+</body>
+</html>
