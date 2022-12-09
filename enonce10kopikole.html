@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body id="body" style="background-color: #777; color:aliceblue">
+    <main>
+        <h1 id="tit">seleksyone tit lan ak paragraf lan ak seulement yn click
+        </h1>
+
+        <p id="para">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nulla facere officiis in fugit fugiat iusto,
+            quos repellendus quisquam ea. Alias, illo? Ab, atque ut. Ducimus vel possimus quaerat ad voluptatibus
+            architecto quibusdam deleniti quo.
+        </p>
+
+        <button id="copy"><img src="copie.png" alt="" style="width: 15%; height: 15%; "></button>
+        <span id="show"></span>
+    </main>
+    <script>
+        const show = document.getElementById('show')
+        document.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+
+        }, false)
+
+        const body = document.getElementById('body')
+        body.onmousedown = () => {
+
+            return false
+        }
+
+        let ctrlc = false;
+        let crtlv = false;
+
+        document.body.addEventListener('keyup', (event) => {
+            if (event.key == 'Control') ctrlc = false;
+            if (event.code == 'KeyC') crtlv = false;
+        })
+
+        document.body.addEventListener('keydown', (event) => {
+            if (event.key == 'Control') ctrlc = true;
+            if (ctrlc == true && event.code == 'KeyC') {
+                event.preventDefault()
+
+            }
+
+        })
+
+        let tit = document.getElementById('tit')
+        let para = document.getElementById('para')
+        const copy = document.getElementById('copy')
+        tit.oncopy = (event) => {
+            event.preventDefault()
+            let seleksyon = window.getSelection()
+            event.clipboarData.setData('tit/plain', seleksyon.toString)
+        }
+
+        para.oncopy = (evt) => {
+            evt.preventDefault()
+            let seleksyon = window.getSelection()
+            evt.clipboarData.setData('tit/plain', seleksyon.toString)
+        }
+        copy.onclick = (e) => {
+            let klik = document.createRange()
+
+            klik.setStart(tit.firstChild, 0)
+            klik.setEnd(para.firstChild, para.textContent.length)
+            let selection = document.getSelection()
+            selection.addRange(klik)
+
+            navigator.clipboard.writeText(selection.toString())
+
+        }
+
+    </script>
+</body>
+
+</html>
